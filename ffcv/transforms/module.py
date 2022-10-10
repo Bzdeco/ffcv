@@ -21,8 +21,10 @@ class ModuleWrapper(Operation):
         self.module = module
 
     def generate_code(self) -> Callable:
+        wrapped_module = self.module
+
         def apply_module(inp, _):
-            res = self.module(inp)
+            res = wrapped_module(inp)
             return res
 
         return apply_module
